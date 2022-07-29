@@ -1,1 +1,1 @@
-web: gunicorn lis.wsgi
+web: gunicorn -b :$PORT app:app
