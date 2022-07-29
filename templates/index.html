@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}" />
+  <link rel="icon" type="image/png" href="{{ url_for('static',filename='assets/favicon.ico') }}">
   <title>Communication System</title>
 </head>
 
@@ -63,6 +64,11 @@
       </div>
     </div>
     <!-- PART 3 END -->
+  </div>
+  <div class="hidden">
+    <center>
+      <img src="{{ url_for('static',filename='assets/DESKTOP.png') }}" alt="USE ON DESKTOP">
+    </center>
   </div>
 </body>
 

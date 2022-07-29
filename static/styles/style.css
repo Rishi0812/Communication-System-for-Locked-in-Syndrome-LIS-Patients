@@ -144,3 +144,20 @@ p {
   width: auto;
   margin-top: 100%;
 }
+
+.hidden{
+  display: none;
+  }
+  
+  @media only screen and (max-width: 1300px) {
+    body {
+      background-color: black;
+    }
+    .main {
+      display: none;
+    }
+    .hidden{
+      display: contents;
+      margin: auto;
+    }
+  }
