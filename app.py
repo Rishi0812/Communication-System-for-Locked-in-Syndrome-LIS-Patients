@@ -5,7 +5,7 @@ from blink_det import Video
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/html')
 def index():
     return render_template('index.html')
 
