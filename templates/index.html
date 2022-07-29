@@ -72,9 +72,25 @@
   </div>
 
   <body onload="startWebCam()">
-    <script type="text/javascript" var video=document.querySelector("video"); function startWebCam() {
-      navigator.mediaDevices.getUserMedia({ video: true, audio: false }).then(function (stream) {
-      video.srcObject=stream; video.play(); }); }></script>
+    <script type="text/javascript">
+      var video = document.querySelector("video");
+      function startWebCam() {
+        if (navigator.mediaDevices.getUserMedia) {
+          navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function (stream) {
+              video.srcObject = stream;
+            })
+            .catch(function (err0r) {
+              console.log("Something went wrong!");
+            });
+        }
+      }
+
+      function stopWebCam() {
+        video.pause();
+      }
+// 		startWebCam();
+    </script>
   </body>
 
 </html>
