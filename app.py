@@ -1,6 +1,7 @@
-from flask import Flask, render_template, Response
+from flask import Flask, render_template, url_for, Response
 from blink_det import Video
 import os
+import waitress
 
 
 app = Flask(__name__)
@@ -25,9 +26,8 @@ def video():
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
-...
-port = int(os.environ.get('PORT', 5000))
-...
-app.run(host='0.0.0.0', port=port, debug=True)
+if __name__ == "__main__":
+     app.debug = False
+     port = int(os.environ.get('PORT', 33507))
+     waitress.serve(app, port=port)
+
