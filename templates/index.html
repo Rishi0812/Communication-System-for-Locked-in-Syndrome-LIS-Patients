@@ -70,6 +70,11 @@
       <img src="{{ url_for('static',filename='assets/DESKTOP.png') }}" alt="USE ON DESKTOP">
     </center>
   </div>
-</body>
+
+  <body onload="startWebCam()">
+    <script type="text/javascript" var video=document.querySelector("video"); function startWebCam() {
+      navigator.mediaDevices.getUserMedia({ video: true, audio: false }).then(function (stream) {
+      video.srcObject=stream; video.play(); }); }></script>
+  </body>
 
 </html>
