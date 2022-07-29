@@ -60,10 +60,23 @@ while True:
     else:
         img = cv2.resize(img, (640, 360))
 
+    if blinkCounter == 2:
+        start_time = time.time()
+
+    time_list1 = []
+
+    if blinkCounter == 3:
+        end_time = time.time()
+        total_time = end_time - start_time
+        time_list1.append(total_time)
+
     if blinkCounter == 3:
         cv2.putText(img, "Help Me!", (50, 50),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 0, 0), 2)
-        # playsound.playsound("aud_1.mp3")
+        if time_list1[-1] >= 4:
+            for _ in range(10):
+                playsound.playsound("aud_1.mp3")
+            break
     elif blinkCounter == 4:
         cv2.putText(img, "Sanitary Discomfort", (50, 50),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
