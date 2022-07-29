@@ -1,5 +1,4 @@
 # Communication System for Locked-in Syndrome (LIS) Patients 
-A simple yet effective communication system for Locked-in Syndrome (LIS) Patients
 
 Locked-in syndrome is a rare neurological disorder characterized by complete paralysis of voluntary muscles except for those that control the movement of the eyes. A person with locked-in syndrome is conscious and can think and reason but cannot speak or move unless he/she was able to develop one reliable form of communication such as blinking or moving their eyelids to communicate with people around him/her. People with the locked-in syndrome have a reduced quality of life because they are totally dependent on their family members, friends, or a professional caregiver for all their basic needs. No known cure exists for locked-in syndrome and medical practitioners focus on helping the patient find novel ways to communicate.
 
