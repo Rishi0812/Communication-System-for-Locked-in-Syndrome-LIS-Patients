@@ -1,4 +1,4 @@
-import cv2	
+import cv2
 import playsound
 import time
 from cvzone.FaceMeshModule import FaceMeshDetector
@@ -6,7 +6,7 @@ from cvzone.FaceMeshModule import FaceMeshDetector
 
 class Video(object):
     def __init__(self):
-        self.cap = cv2.VideoCapture(1)
+        self.cap = cv2.VideoCapture(0)
         self.detector = FaceMeshDetector(maxFaces=1)
         self.blinkCounter = 0
         self.counter = 0
@@ -25,7 +25,7 @@ class Video(object):
             self.cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
 
         success, img = self.cap.read()
-        img, faces = self.detector.findFaceMesh(img, draw=False)
+        img, faces = self.detector.findFaceMesh(img, draw=True)
 
         if faces:
             face = faces[0]
