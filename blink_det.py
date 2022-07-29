@@ -8,6 +8,10 @@ class Video(object):
     def __init__(self):
         self.cap = cv2.VideoCapture(0)
         self.detector = FaceMeshDetector(maxFaces=1)
+        self.blinkCounter = 0
+        self.counter = 0
+        self.start_time = time.time()
+        self.end_time = time.time()
 
     def __del__(self):
         self.cap.release()
@@ -15,15 +19,13 @@ class Video(object):
     def get_frame(self):
         idList = [22, 23, 24, 26, 110, 157, 158, 159, 160, 161, 130, 243]
         ratioList = []
-        blinkCounter = 0
-        counter = 0
         color = (255, 255, 0)
 
         if self.cap.get(cv2.CAP_PROP_POS_FRAMES) == self.cap.get(cv2.CAP_PROP_FRAME_COUNT):
             self.cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
 
         success, img = self.cap.read()
-        img, faces = self.detector.findFaceMesh(img, draw=False)
+        img, faces = self.detector.findFaceMesh(img, draw=True)
 
         if faces:
             face = faces[0]
@@ -46,17 +48,17 @@ class Video(object):
                 ratioList.pop(0)
             ratioAvg = sum(ratioList) / len(ratioList)
 
-            if ratioAvg < 35 and counter == 0:
-                blinkCounter += 1
+            if ratioAvg < 35 and self.counter == 0:
+                self.blinkCounter += 1
                 color = (0, 200, 0)
-                counter = 1
-            if counter != 0:
-                counter += 1
-                if counter > 10:
-                    counter = 0
+                self.counter = 1
+            if self.counter != 0:
+                self.counter += 1
+                if self.counter > 10:
+                    self.counter = 0
                     color = (255, 255, 0)
 
-            cv2.putText(img, "Blink Count: {}".format(blinkCounter), (10, 30),
+            cv2.putText(img, "Blink Count: {}".format(self.blinkCounter), (10, 30),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
 
             img = cv2.resize(img, (600, 500))
@@ -64,37 +66,33 @@ class Video(object):
         else:
             img = cv2.resize(img, (600, 500))
 
-        if blinkCounter == 2:
-            start_time = time.time()
+        if self.blinkCounter == 2:
+            self.start_time = time.time()
 
         time_list1 = []
 
-        if blinkCounter == 3:
-            end_time = time.time()
-            total_time = end_time - start_time
+        if self.blinkCounter == 3:
+            self.end_time = time.time()
+            total_time = self.end_time - self.start_time
             time_list1.append(total_time)
 
-        if blinkCounter == 3:
+        if self.blinkCounter == 3:
             cv2.putText(img, "Help Me!", (50, 50),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 0, 0), 2)
             if time_list1[-1] >= 4:
                 for _ in range(10):
                     playsound.playsound("audios/aud_1.mp3")
 
-        elif blinkCounter == 4:
+        elif self.blinkCounter == 4:
             cv2.putText(img, "Sanitary Discomfort", (50, 50),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
             # playsound.playsound("aud_2.mp3")
-        elif blinkCounter == 5:
+        elif self.blinkCounter == 5:
             cv2.putText(img, "Contact Family", (50, 50),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
             # playsound.playsound("aud_3.mp3")
-        elif blinkCounter == 6:
-            blinkCounter = 0
+        elif self.blinkCounter == 6:
+            self.blinkCounter = 0
 
-        # cv2.imshow("Image", img)
         success, jpeg = cv2.imencode('.jpg', img)
         return jpeg.tobytes()
-
-        # if cv2.waitKey(1) & 0xff == ord('q'):
-        #     break
