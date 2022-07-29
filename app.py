@@ -1,7 +1,5 @@
 from flask import Flask, render_template, url_for, Response
 from blink_det import Video
-import os
-import waitress
 
 
 app = Flask(__name__)
