@@ -14,7 +14,7 @@ The project implements a program that detects and counts the number of blinks. O
 
 This is a demo of the overall interface,
 
-![](https://github.com/Rishi0812/Communication-System-for-Locked-in-Syndrome-LIS-Patients/blob/main/readme%20files/demo.gif)
+![](https://github.com/Rishi0812/Communication-System-for-Locked-in-Syndrome-LIS-Patients/blob/main/readme_files/demo_gif.gif)
 
 
 On the count of,
