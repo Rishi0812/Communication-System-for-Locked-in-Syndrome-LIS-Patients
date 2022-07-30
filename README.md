@@ -8,5 +8,21 @@ LIS patients are, in some ways, neither alive nor dead. They are simply locked i
 ## Proposed Solution
 This project focuses on developing an effective communication system for Locked-In Syndrome Patients where they can do essential communications by just blinking their eyes.
 
-### The project implements a program that detects and counts the number of blinks. Open CV library is used to measure the euclidian distance of the eyes, then further count the number of blinks. There are three essential commands as of now for the prototype which can be increased according to patient need and comfort, The gTTS library has also been used to generate speech from text and later use that for the commands.
+The project implements a program that detects and counts the number of blinks. Open CV library is used to measure the euclidian distance of the eyes, then further count the number of blinks. There are three essential commands as of now for the prototype which can be increased according to patient need and comfort, The gTTS library has also been used to generate speech from text and later use that for the commands.
+
+## Interface
+
+This is a demo of the overall interface,
+
+![](https://github.com/Rishi0812/Communication-System-for-Locked-in-Syndrome-LIS-Patients/blob/main/readme%20files/demo.gif)
+
+
+On the count of,
+- 3 Blinks - "Help Me" is Triggered
+- 4 Blinks - "Sanitary Discomfort" is Triggered
+- 5 Blinks - "Contact Family" is Triggered 
+
+If the user does not blink for more than 4 sec at the 3rd blink, i.e if the 3rd Command 'Help Me' stays on the screen unchanged for more than 4 sec, It'll trigger an emergency voice alarm which keeps on saying 'Help Me' untill it's turned off. All the commands are easily and quickly customisable based on user specific needs and behaviour.
+
+The final aim is to improve and observe the patterns of the preferred mode of communications of the patients in order to improve the overall recovery speed.
 
